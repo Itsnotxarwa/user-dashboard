@@ -7,7 +7,7 @@ import Logo2 from "../assets/image_logo.png";
 export default function Sidebar() {
 
     const links = [
-        { name: "dashboard", label: "Tableau de bord", href: "/dashboard", icon: <LayoutDashboard size={20} /> },
+        { name: "dashboard", label: "Tableau de bord", href: "/", icon: <LayoutDashboard size={20} /> },
         { name: "history", label: "Historique des appels", href: "/history", icon: <ChartColumn size={20} /> },
         { name: "bot", label: "Mon IA téléphonique", href:"/bot", icon: <Bot size={20} /> },
         { name: "settings", label: "Réglages", href: "/settings", icon: <Settings size={20} /> },
