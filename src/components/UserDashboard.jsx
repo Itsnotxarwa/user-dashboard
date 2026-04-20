@@ -14,25 +14,37 @@ export default function UserDashboard() {
         return localStorage.getItem("token");
     });
 
+    const [isActive, setIsActive] = useState(false);
+
     const getProfile = async () => {
-    const token = localStorage.getItem("token");
+        try{
+            const token = localStorage.getItem("token");
 
-    const res = await fetch("https://api.voixup.fr/me/profile", {
-        headers: {
-        "Authorization": `Bearer ${token}`,
-        "accept": "application/json"
-        }   
-    });
+            const res = await fetch("https://api.voixup.fr/me/profile", {
+                headers: {
+                "Authorization": `Bearer ${token}`,
+                "accept": "application/json"
+                }   
+            });
 
-    const data = await res.json();
-    console.log(data);
+            const data = await res.json();
+            console.log(data);
+            setIsActive(data.is_active);
+            if (!res.ok) {
+                alert(`Error: ${data?.detail || "Failed"}`);
+                return;
+            }
+        } catch(err) {
+            console.log(`error: ${err.detail}`)
+        }
+    
     };
 
     return(
         <div className="flex min-h-screen bg-white text-black">
             <Sidebar />
             <main className="bg-linear-to-br from-white to-[rgba(3,44,166,0.09)] flex-1 flex-1">
-                <TopBar activeNav={{name: "Tableau de bord"}} />
+                <TopBar activeNav={{name: "Tableau de bord"}} isActive={isActive} />
             </main>
 
         </div>
