@@ -44,6 +44,7 @@ export default function UserDashboard() {
         }
     
     };
+    getProfile();
     },[])
 
     return(
