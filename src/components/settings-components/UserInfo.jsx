@@ -39,14 +39,7 @@ export default function UserInfo({profile}) {
                         justify-center text-white text-sm font-black shrink-0 
                         bg-linear-to-br from-[#0366a6] to-[#1e40af] 
                         shadow-[0_6px_18px_rgba(3,44,166,.22)]">
-                            {profile?.email
-                            ? profile.email
-                                .split("@")[0]
-                                .split(".")
-                                .map(w => w[0]?.toUpperCase())
-                                .slice(0, 2)
-                                .join("")
-                            : ""}
+                            
                         </div>
                         <div>
                             <div className="text-xs mt-0.5 text-slate-500">
