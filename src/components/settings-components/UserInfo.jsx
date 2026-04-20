@@ -1,4 +1,7 @@
 export default function UserInfo({profile}) {
+    if (!profile) {
+        return <div className="p-6">Loading...</div>
+    }
     const userInfo =[
         {
             label: "ID utilisateur",
