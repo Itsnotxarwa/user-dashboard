@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "./sidebar";
 import TopBar from "./dashboard-components/TopBar";
 
@@ -16,9 +16,11 @@ export default function UserDashboard() {
 
     const [isActive, setIsActive] = useState(false);
 
-    const getProfile = async () => {
+    useEffect(() => {
+        const getProfile = async () => {
         try{
             const token = localStorage.getItem("token");
+            console.log("TOKEN:", token);
 
             const res = await fetch("https://api.voixup.fr/me/profile", {
                 headers: {
@@ -27,18 +29,22 @@ export default function UserDashboard() {
                 }   
             });
 
+            if (!res.ok) {
+                const errorData = await res.json();
+                console.log(errorData);
+                return;
+            }
+
             const data = await res.json();
             console.log(data);
             setIsActive(data.is_active);
-            if (!res.ok) {
-                alert(`Error: ${data?.detail || "Failed"}`);
-                return;
-            }
+            
         } catch(err) {
-            console.log(`error: ${err.detail}`)
+            console.log(err)
         }
     
     };
+    },[])
 
     return(
         <div className="flex min-h-screen bg-white text-black">
