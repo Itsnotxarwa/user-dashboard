@@ -1,20 +1,11 @@
 import { useState, useEffect } from "react";
 import Sidebar from "./sidebar";
 import TopBar from "./dashboard-components/TopBar";
+import UserInfo from "./settings-components/UserInfo";
+import ChangePassword from "./settings-components/ChangePassword";
 
-
-export default function UserDashboard() {
-    const [token] = useState(() => {
-        const params = new URLSearchParams(window.location.search);
-        const urlToken = params.get("token");
-        if (urlToken) {
-            localStorage.setItem("token", urlToken);
-            return urlToken;
-        }
-        return localStorage.getItem("token");
-    });
-
-    const [isActive, setIsActive] = useState(false);
+export default function Settings() {
+    const [profile, setProfile] = useState([]);
 
     useEffect(() => {
         const getProfile = async () => {
@@ -37,7 +28,7 @@ export default function UserDashboard() {
 
             const data = await res.json();
             console.log(data);
-            setIsActive(data.is_active);
+            setProfile(data.is_active);
             
         } catch(err) {
             console.log(err)
@@ -45,15 +36,16 @@ export default function UserDashboard() {
     
     };
     getProfile();
-    },[])
-
+    },[]);
+    
     return(
         <div className="flex min-h-screen bg-white text-black">
             <Sidebar />
             <main className="bg-linear-to-br from-white to-[rgba(3,44,166,0.09)] flex-1">
-                <TopBar activeNav={{name: "Tableau de bord"}} isActive={isActive} />
+                <TopBar activeNav={{name: "Réglages"}} />
+                <UserInfo profile={profile} />
+                <ChangePassword />
             </main>
-
         </div>
     )
 }
