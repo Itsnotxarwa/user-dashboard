@@ -2,27 +2,27 @@ export default function UserInfo({profile}) {
     const userInfo =[
         {
             label: "ID utilisateur",
-            value: profile.id,
+            value: profile?.id,
         },
         {
             label: "Email",
-            value: profile.email,
+            value: profile?.email,
         },
         {
             label: "Rôle",
-            value: profile.role,
+            value: profile?.role,
         },
         {
             label: "Tenant ID",
-            value: profile.tenant_id,
+            value: profile?.tenant_id,
         },
         {
             label: "Compte créé le",
-            value: profile.created_at,
+            value: profile?.created_at,
         },
         {
             label: "Statut",
-            value: profile.is_active
+            value: profile?.is_active
         }
         ]
     return(
@@ -39,11 +39,13 @@ export default function UserInfo({profile}) {
                         justify-center text-white text-sm font-black shrink-0 
                         bg-linear-to-br from-[#0366a6] to-[#1e40af] 
                         shadow-[0_6px_18px_rgba(3,44,166,.22)]">
-                            {profile?.email ? profile.email
-                            .split("")
-                            .map(w => w.charAt(0).toUpperCase())
-                            .slice(0,2)
-                            .join("") 
+                            {profile?.email
+                            ? profile.email
+                                .split("@")[0]
+                                .split(".")
+                                .map(w => w[0]?.toUpperCase())
+                                .slice(0, 2)
+                                .join("")
                             : ""}
                         </div>
                         <div>

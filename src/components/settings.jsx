@@ -5,7 +5,7 @@ import UserInfo from "./settings-components/UserInfo";
 import ChangePassword from "./settings-components/ChangePassword";
 
 export default function Settings() {
-    const [profile, setProfile] = useState([]);
+    const [profile, setProfile] = useState(null);
 
     useEffect(() => {
         const getProfile = async () => {
@@ -28,7 +28,7 @@ export default function Settings() {
 
             const data = await res.json();
             console.log(data);
-            setProfile(data.is_active);
+            setProfile(data);
             
         } catch(err) {
             console.log(err)
