@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChevronDown, Bot, User } from "lucide-react";
 
-export default function CallsTable({sessions}) {
+export default function CallsTable({filteredSessions}) {
     const [openRow, setOpenRow] = useState(null);
 
     const formatDate = (datetime) => datetime.split("T")[0];
@@ -17,7 +17,7 @@ export default function CallsTable({sessions}) {
     return(
         <div className="bg-white rounded-2xl overflow-hidden mb-6 border border-[rgba(3,44,166,.09)] 
         shadow-[0_2px_12px_rgba(3,44,166,.06)]">
-            {sessions.length === 0 ? (
+            {filteredSessions.length === 0 ? (
                 <div className="py-6 text-center text-sm text-slate-600 rounded-xl
                 border-dashed border-[rgba(3,44,166,0.12)]">
                     Aucun appel pour le moment 
@@ -51,14 +51,14 @@ export default function CallsTable({sessions}) {
                     </tr>
                 </thead>
                 <tbody>
-                    {sessions?.length === 0 ? (
+                    {filteredSessions?.length === 0 ? (
                         <tr>
                             <td colSpan="8" className="text-center py-6 text-sm text-slate-600">
                                 Aucun appel pour le moment
                             </td>
                         </tr>
                     ) : (
-                    sessions?.map((session) => {
+                    filteredSessions?.map((session) => {
                         const isOpen = openRow === session.id;
                         let parsedTranscription = [];
 
