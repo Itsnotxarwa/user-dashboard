@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import UserDashboard from './components/UserDashboard';
 import Settings from "./components/settings";
 import CallsHistory from './components/callsHistory';
+import SessionExpired from "./SessionExpired";
 
 function App() {
   const [sessionValid, setSessionValid] = useState(true);
