@@ -2,10 +2,32 @@ export default function UserInfo({profile}) {
     if (!profile) {
         return <div className="p-6">Loading...</div>
     }
+    const formatDate = (date) => {
+        if (!date) return "-";
+        return new Date(date).toLocaleDateString("fr-FR", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        });
+    };
+
+    const formatStatus = (status) => {
+        return status ? "Actif" : "Inactif";
+    };
+
+    const formatRole = (role) => {
+        if (!role) return "-";
+        return role === "tenant" ? "Utilisateur" : role;
+    };
+
+    const shortId = (id) => {
+        if (!id) return "-";
+        return id.slice(0, 8) + "...";
+    };
     const userInfo =[
         {
             label: "ID utilisateur",
-            value: profile?.id,
+            value: shortId(profile?.id),
         },
         {
             label: "Email",
@@ -13,21 +35,29 @@ export default function UserInfo({profile}) {
         },
         {
             label: "Rôle",
-            value: profile?.role,
+            value: formatRole(profile?.role),
         },
         {
             label: "Tenant ID",
-            value: profile?.tenant_id,
+            value: shortId(profile?.tenant_id),
         },
         {
             label: "Compte créé le",
-            value: profile?.created_at,
+            value: formatDate(profile?.created_at),
         },
         {
             label: "Statut",
-            value: profile?.is_active
+            value: (
+                <span className={`text-xs px-2 py-0.5 rounded-full
+                    ${profile?.is_active
+                    ? "bg-green-100 text-green-600"
+                    : "bg-gray-100 text-gray-500"}`}>
+                    {formatStatus(profile?.is_active)}
+                </span>
+            )
         }
-        ]
+    ]
+
     return(
         <div className="p-6">
             <h2 className="text-lg font-extrabold mb-4 tracking-tight text-[#0a1628]"
