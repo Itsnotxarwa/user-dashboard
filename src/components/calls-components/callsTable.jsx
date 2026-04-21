@@ -23,11 +23,11 @@ export default function CallsTable({sessions}) {
                     Aucun appel pour le moment 
                 </div>
             ) : (
-            <table className="w-full border-collapse text-xs">
+            <table className="w-full border-collapse text-[13px]">
                 <thead className="sticky top-0 bg-[#fafafa]">
                     <tr className="border-b border-[rgba(3,44,166,.07)]">
                         <th className="p-[10px_5px_10px_16px] w-7"></th>
-                        <th className="text-left px-5 py-2.5 text-xs font-medium tracking-widest uppercase text-slate-400">
+                        <th className="text-left px-5 py-2.5 text-[13px] font-medium tracking-widest uppercase text-slate-400">
                                 From
                         </th>
                         <th className="text-left px-5 py-2.5 text-xs font-medium tracking-widest uppercase text-slate-400">
@@ -92,31 +92,34 @@ export default function CallsTable({sessions}) {
                                             )}
                                         </div>
                                 </td>
-                                <td className="px-5 py-2.5 text-xs text-slate-800">
+                                <td className="px-5 py-2.5 text-[13px] text-slate-800">
                                     {session.from_number}
                                 </td>
-                                <td className="px-5 py-2.5 text-xs text-slate-800">
+                                <td className="px-5 py-2.5 text-[13px] text-slate-800">
                                     {session.to_number}
                                 </td>
-                                <td className="px-5 py-2.5 text-xs text-slate-800">
+                                <td className="px-5 py-2.5 text-[13px] text-slate-800">
                                     {session.call_type}
                                 </td>
-                                <td className="px-5 py-2.5 text-xs text-slate-800">
+                                <td className="px-5 py-2.5 text-[13px] text-slate-800">
                                     {formatDuration(session.duration_seconds)}
                                 </td>
-                                <td className="px-5 py-2.5 text-xs text-slate-800">
-                                    {session.call_status}
+                                <td className={`px-5 py-2.5 text-[13px] border
+                                ${session.call_status === "ANSWERED" ? "bg-[rgba(5,150,105,.08)] text-[#059669] border-[rgba(5,150,105,.20)]" 
+                                    : "bg-[rgba(220,38,38,.08)] text-[#dc2626] border-[rgba(220,38,38,.18)]"} 
+                                    `}>
+                                    {session.call_status === "ANSWERED" ? "Répondus" : "Occupé"}
                                 </td>
-                                <td className="px-5 py-2.5 text-xs text-slate-800">
+                                <td className="px-5 py-2.5 text-[13px] text-slate-800">
                                     {session.disconnect_reason}
                                 </td>
-                                <td className="px-5 py-2.5 text-xs text-slate-800">
+                                <td className="px-5 py-2.5 text-[13px] text-slate-800">
                                     {formatDate(session.created_at)}
                                 </td>
                             </tr>
                             {isOpen && (
                                 <tr className="bg-[rgba(3,44,166,.02)]">
-                                    <td colSpan={7} className="px-5 py-3 text-xs text-slate-600">
+                                    <td colSpan={8} className="px-5 py-3 text-[13px] text-slate-600">
                                         {parsedTranscription && parsedTranscription.length > 0 ? (
                                             <div className="space-y-3">
                                             {parsedTranscription.map((item,i) => {
@@ -127,7 +130,7 @@ export default function CallsTable({sessions}) {
                                                 className={`flex items-start gap-2 ${
                                                     isAI ? "" : "flex-row-reverse"
                                                     }`}>
-                                                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white mt-0.5 shrink-0
+                                                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[13px] font-bold text-white mt-0.5 shrink-0
                                                     ${
                                                         isAI
                                                         ? "bg-linear-to-br from-[#032ca6] to-[#1a6bff]"
@@ -135,7 +138,7 @@ export default function CallsTable({sessions}) {
                                                     }`}>
                                                         {isAI ? "AI" : "CL"}
                                                     </div>
-                                                    <div className={`max-w-[78%] px-3 py-2 text-xs leading-relaxed transition-all duration-200 wrap-break-word
+                                                    <div className={`max-w-[78%] px-3 py-2 text-[13px] leading-relaxed transition-all duration-200 wrap-break-word
                                                     ${
                                                         isAI
                                                         ? "bg-[rgba(3,44,166,.06)] border border-[rgba(3,44,166,.12)] text-[#0a1628] rounded-[4px_14px_14px_14px]"
@@ -165,7 +168,7 @@ export default function CallsTable({sessions}) {
                                         )
                                         : 
                                         (
-                                            <p className="text-center text-[#9aabca] text-xs p-5">
+                                            <p className="text-center text-[#9aabca] text-[13px] p-5">
                                                 No transcription available for this call.
                                             </p>
                                         )}
