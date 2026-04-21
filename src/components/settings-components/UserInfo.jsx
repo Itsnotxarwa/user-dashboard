@@ -30,7 +30,7 @@ export default function UserInfo({profile}) {
         ]
     return(
         <div className="p-6">
-            <h2 className="text-lg font-extrabold mb-4 tracking-tight"
+            <h2 className="text-lg font-extrabold mb-4 tracking-tight text-[#0a1628]"
             style={{fontFamily: "'Cabinet', sans-serif"}}>
                 Réglages
             </h2>
@@ -67,7 +67,7 @@ export default function UserInfo({profile}) {
                     {userInfo.map((info,i) => (
                         <div
                         key={i}
-                        className="flex items-center gap-3.5 pb-4 mb-4 border-b border-[rgba(3,44,166,.08)]">
+                        className="flex items-center justify-between gap-3.5 pb-4 mb-4 border-b border-[rgba(3,44,166,.08)]">
                             <span className="text-sm font-medium text-gray-600 text-medium">{info.label}</span>
                             <span>{info.value}</span>
                         </div>
