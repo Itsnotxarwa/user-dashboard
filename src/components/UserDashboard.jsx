@@ -14,7 +14,7 @@ export default function UserDashboard() {
         return localStorage.getItem("token");
     });
 
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState(true);
 
     useEffect(() => {
         const getProfile = async () => {
