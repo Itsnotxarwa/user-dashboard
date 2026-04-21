@@ -104,11 +104,12 @@ export default function CallsTable({filteredSessions}) {
                                 <td className="px-5 py-2.5 text-[13px] text-slate-800">
                                     {formatDuration(session.duration_seconds)}
                                 </td>
-                                <td className={`px-5 py-2.5 text-[13px] border
-                                ${session.call_status === "ANSWERED" ? "bg-[rgba(5,150,105,.08)] text-[#059669] border-[rgba(5,150,105,.20)]" 
-                                    : "bg-[rgba(220,38,38,.08)] text-[#dc2626] border-[rgba(220,38,38,.18)]"} 
-                                    `}>
-                                    {session.call_status === "ANSWERED" ? "Répondus" : "Occupé"}
+                                <td className="px-5 py-2.5 text-[13px] flex items-center">
+                                    <span className={`py-1 px-2 ${session.call_status === "ANSWERED" 
+                                    ? "bg-[rgba(5,150,105,.08)] text-[#059669] border-[rgba(5,150,105,.20)]" 
+                                    : "bg-[rgba(220,38,38,.08)] text-[#dc2626] border-[rgba(220,38,38,.18)]"}`}>
+                                        {session.call_status === "ANSWERED" ? "Répondus" : "Occupé"}
+                                    </span>
                                 </td>
                                 <td className="px-5 py-2.5 text-[13px] text-slate-800">
                                     {session.disconnect_reason}

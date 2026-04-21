@@ -7,7 +7,7 @@ import { handleUnauthorized } from "../utils/auth.js";
 export default function CallsHistory() {
     const [sessions, setSessions] = useState([]);
     const [filter, setFilter] = useState("ALL");
-    const filteredSessions = filter === "ALL" ? sessions : sessions.filter(c => c.status === filter);
+    const filteredSessions = filter === "ALL" ? sessions : sessions.filter(s => s.call_status === filter);
 
     useEffect(() => {
         const getCallSessions = async (page = 1, limit = 20) => {
