@@ -3,6 +3,8 @@ import Sidebar from "./sidebar";
 import TopBar from "./dashboard-components/TopBar";
 import UserInfo from "./settings-components/UserInfo";
 import ChangePassword from "./settings-components/ChangePassword";
+import { handleUnauthorized } from "../utils/auth.js";
+
 
 export default function Settings() {
     const [profile, setProfile] = useState(null);
@@ -19,6 +21,11 @@ export default function Settings() {
                 "accept": "application/json"
                 }   
             });
+
+            if (res.status === 401) {
+                handleUnauthorized(401);
+                return;
+            }
 
             if (!res.ok) {
                 const errorData = await res.json();

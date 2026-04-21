@@ -3,6 +3,7 @@ import Sidebar from "./sidebar";
 import TopBar from "./dashboard-components/TopBar";
 import CallsHeader from "./calls-components/CallsHeader";
 import CallsTable from "./calls-components/callsTable";
+import { handleUnauthorized } from "../utils/auth.js";
 export default function CallsHistory() {
     const [sessions, setSessions] = useState([]);
 
@@ -20,6 +21,11 @@ export default function CallsHistory() {
                     },
                 }
             );
+
+        if (res.status === 401) {
+            handleUnauthorized(401);
+            return;
+        }
 
         const data = await res.json();
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, Bot } from "lucide-react";
+import { ChevronDown, Bot, User } from "lucide-react";
 
 export default function CallsTable({sessions}) {
     const [openRow, setOpenRow] = useState(null);

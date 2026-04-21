@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Sidebar from "./sidebar";
 import TopBar from "./dashboard-components/TopBar";
+import { handleUnauthorized } from "../utils/auth";
 
 
 export default function UserDashboard() {
@@ -28,6 +29,11 @@ export default function UserDashboard() {
                 "accept": "application/json"
                 }   
             });
+
+            if (res.status === 401) {
+                handleUnauthorized(401);
+                return;
+            }
 
             if (!res.ok) {
                 const errorData = await res.json();
