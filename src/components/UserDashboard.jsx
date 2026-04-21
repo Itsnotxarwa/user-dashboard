@@ -42,7 +42,7 @@ export default function UserDashboard() {
             }
 
             const data = await res.json();
-            console.log(data);
+            console.log(data.is_active);
             setIsActive(data.is_active);
             
         } catch(err) {
