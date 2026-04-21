@@ -28,25 +28,25 @@ export default function CallsTable({filteredSessions}) {
                     <tr className="border-b border-[rgba(3,44,166,.07)]">
                         <th className="p-[10px_5px_10px_16px] w-7"></th>
                         <th className="text-left px-5 py-2.5 text-[13px] font-medium tracking-widest uppercase text-slate-400">
-                                From
+                            De
                         </th>
                         <th className="text-left px-5 py-2.5 text-xs font-medium tracking-widest uppercase text-slate-400">
-                            To
+                            À
                         </th>
                         <th className="text-left px-5 py-2.5 text-xs font-medium tracking-widest uppercase text-slate-400">
                             Type
                         </th>
                         <th className="text-left px-5 py-2.5 text-xs font-medium tracking-widest uppercase text-slate-400">
-                            Duration
+                            Durée
                         </th>
                         <th className="text-left px-5 py-2.5 text-xs font-medium tracking-widest uppercase text-slate-400">
-                            Status
+                            Statut
                         </th>
                         <th className="text-left px-5 py-2.5 text-xs font-medium tracking-widest uppercase text-slate-400">
-                            End Raison
+                            Raison de fin
                         </th>
                         <th className="text-left px-5 py-2.5 text-xs font-medium tracking-widest uppercase text-slate-400">
-                            Created at
+                            Créé le
                         </th>
                     </tr>
                 </thead>
@@ -105,14 +105,14 @@ export default function CallsTable({filteredSessions}) {
                                     {formatDuration(session.duration_seconds)}
                                 </td>
                                 <td className="px-5 py-2.5 text-[13px] flex items-center">
-                                    <span className={`py-1 px-2 ${session.call_status === "ANSWERED" 
+                                    <span className={`py-1 px-2 rounded-full border ${session.call_status === "ANSWERED" 
                                     ? "bg-[rgba(5,150,105,.08)] text-[#059669] border-[rgba(5,150,105,.20)]" 
                                     : "bg-[rgba(220,38,38,.08)] text-[#dc2626] border-[rgba(220,38,38,.18)]"}`}>
                                         {session.call_status === "ANSWERED" ? "Répondus" : "Occupé"}
                                     </span>
                                 </td>
                                 <td className="px-5 py-2.5 text-[13px] text-slate-800">
-                                    {session.disconnect_reason}
+                                    {session.disconnect_reason === "HANGUP_BY_CALLEE" ? "Raccroché par l’interlocuteur" : "Raccroché par l’assistant IA"}
                                 </td>
                                 <td className="px-5 py-2.5 text-[13px] text-slate-800">
                                     {formatDate(session.created_at)}
