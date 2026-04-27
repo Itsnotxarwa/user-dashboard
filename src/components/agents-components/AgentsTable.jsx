@@ -1,4 +1,4 @@
-export default function AgentsTable({agents}) {
+export default function AgentsTable({agents, setSelectedAgent, setOpenAgentsDetails}) {
     return(
         <div className="bg-white rounded-2xl overflow-hidden mb-6 border border-[rgba(3,44,166,.09)] 
         shadow-[0_2px_12px_rgba(3,44,166,.06)]">
@@ -44,6 +44,10 @@ export default function AgentsTable({agents}) {
                         agents.map((a, i) => (
                         <tr 
                         key={i}
+                        onClick={() => {
+                            setSelectedAgent(a);
+                            setOpenAgentsDetails(true);
+                        }}
                         className="border-t border-[rgba(3,44,166,0.06)] hover:bg-[rgba(3,44,166,.02)]
                         cursor-pointer">
                             <td className="p-[13px_20px]">

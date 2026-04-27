@@ -1,6 +1,6 @@
 import AgentsTable from "./AgentsTable";
 
-export default function AgentsOverview({agents}) {
+export default function AgentsOverview({agents, setSelectedAgent, setOpenAgentsDetails}) {
     return(
         <div className="min-h-screen bg-[rgba(3,44,166,0.09)]">
             <div className="max-w-7xl mx-auto lg:px-6 px-4">
@@ -8,7 +8,9 @@ export default function AgentsOverview({agents}) {
                     Historique des appels
                 </h2>
             
-                <AgentsTable agents={agents} />
+                <AgentsTable agents={agents}
+                setSelectedAgent={setSelectedAgent}
+                setOpenAgentsDetails={setOpenAgentsDetails} />
             </div>
         </div>
     )

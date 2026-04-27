@@ -3,9 +3,12 @@ import TopBar from "./dashboard-components/TopBar";
 import Sidebar from "./sidebar";
 import { handleUnauthorized } from "../utils/auth";
 import AgentsOverview from "./agents-components/AgentsOverview";
+import AgentDetails from "./agents-components/AgentDetails";
 
 export default function Agents() {
     const [agents, setAgents] = useState([]);
+    const [selectedAgent, setSelectedAgent] = useState(null);
+    const [openAgentDetails, setOpenAgentsDetails] = useState(false);
 
     useEffect(() => {
         const getAgents = async () => {
@@ -48,8 +51,17 @@ export default function Agents() {
             <Sidebar />
             <main className="bg-linear-to-br from-white to-[rgba(3,44,166,0.09)] flex-1">
                 <TopBar activeNav={{name: "Mon IA téléphonique"}} />
-                <AgentsOverview agents={agents} />
+                <AgentsOverview 
+                agents={agents} 
+                setSelectedAgent={setSelectedAgent}
+                selectedAgent={selectedAgent}
+                setOpenAgentsDetails={setOpenAgentsDetails} />
             </main>
+            {openAgentDetails && (
+                <AgentDetails
+                selectedAgent={selectedAgent}
+                onClose={() => setOpenAgentsDetails(false)} />
+            )}
         </div>
     )
 }
