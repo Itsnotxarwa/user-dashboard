@@ -4,6 +4,7 @@ import TopBar from "./dashboard-components/TopBar";
 import CallsHeader from "./calls-components/CallsHeader";
 import CallsTable from "./calls-components/callsTable";
 import { handleUnauthorized } from "../utils/auth.js";
+import SessionDrawer from "./calls-components/SessionDrawer";
 export default function CallsHistory() {
     const [sessions, setSessions] = useState([]);
     const [selectedSession, setSelectedSession] = useState(null);
