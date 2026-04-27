@@ -68,7 +68,7 @@ export default function CallsTable({filteredSessions, setSelectedSession, setOpe
                                 setOpenDrawer(true);
                             }}
                             className={`border-b border-[rgba(3,44,166,.05)] hover:bg-[rgba(3,44,166,.02)] 
-                            cursor-pointer ${isOpen ? "bg-[rgba(3,44,166,.02)]" : ""}`}>
+                            cursor-pointer`}>
                                 <td className="p-[10px_5px_10px_16px] w-7">
                                     <div className={`h-4.5 w-4.5 rounded-[5px] border shrink-0 flex justify-center items-center
                                         ${hasTranscription ? 
