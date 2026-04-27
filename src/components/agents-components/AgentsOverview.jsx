@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AgentsTable from "./AgentsTable";
+import AgentDetails from "./AgentDetails";
 
 export default function AgentsOverview({agents, selectedAgent, setSelectedAgent}) {
     const [openAgentDetails, setOpenAgentsDetails] = useState(false);
