@@ -4,6 +4,7 @@ import UserDashboard from './components/UserDashboard';
 import Settings from "./components/settings";
 import CallsHistory from './components/callsHistory';
 import SessionExpired from "./SessionExpired";
+import Agents from "./components/Agents";
 
 function App() {
   const [sessionValid, setSessionValid] = useState(true);
@@ -35,6 +36,7 @@ function App() {
         <Route path="/" element={<UserDashboard />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/history" element={<CallsHistory />} />
+        <Route path="/bot" element={<Agents />} />
       </Routes>
     </Router>
     </div>
