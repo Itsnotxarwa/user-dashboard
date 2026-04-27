@@ -6,6 +6,8 @@ import CallsTable from "./calls-components/callsTable";
 import { handleUnauthorized } from "../utils/auth.js";
 export default function CallsHistory() {
     const [sessions, setSessions] = useState([]);
+    const [selectedSession, setSelectedSession] = useState(null);
+    const [openDrawer, setOpenDrawer] = useState(false);
     const [filter, setFilter] = useState("ALL");
     const filteredSessions = filter === "ALL" ? sessions : sessions.filter(s => s.call_status === filter);
 
@@ -82,9 +84,18 @@ export default function CallsHistory() {
                     </div>
                 </div>
                 )}
-                    <CallsTable filteredSessions={filteredSessions} />
+                    <CallsTable 
+                    filteredSessions={filteredSessions} 
+                    setSelectedSession={setSelectedSession}
+                    setOpenDrawer={setOpenDrawer} />
                 </div>
             </main>
+            {openDrawer && (
+                <SessionDrawer 
+                selectedSession={selectedSession}
+                onClose={() => setOpenDrawer(false)}
+                open={openDrawer} />
+            )}
         </div>
     )
 }

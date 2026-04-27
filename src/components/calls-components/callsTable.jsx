@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChevronDown, Bot, User } from "lucide-react";
 
-export default function CallsTable({filteredSessions}) {
+export default function CallsTable({filteredSessions, setSelectedSession, setOpenDrawer}) {
     const [openRow, setOpenRow] = useState(null);
 
     const formatDate = (datetime) => datetime.split("T")[0];
@@ -59,26 +59,14 @@ export default function CallsTable({filteredSessions}) {
                         </tr>
                     ) : (
                     filteredSessions?.map((session) => {
-                        const isOpen = openRow === session.id;
-                        let parsedTranscription = [];
-
-                        try {
-                            parsedTranscription = session.transcription
-                                ? JSON.parse(session.transcription)
-                                : [];
-                            } catch {
-                            parsedTranscription = [];
-                        }
-                        const hasTranscription =
-                            session.transcription &&
-                            session.transcription !== "null" &&
-                            session.transcription !== "[]";
-
                         return(
                         <>
                             <tr  
                             key={session.id}
-                            onClick={() => toggleRow(session.id)}
+                            onClick={() => {
+                                setSelectedSession(session);
+                                setOpenDrawer(true);
+                            }}
                             className={`border-b border-[rgba(3,44,166,.05)] hover:bg-[rgba(3,44,166,.02)] 
                             cursor-pointer ${isOpen ? "bg-[rgba(3,44,166,.02)]" : ""}`}>
                                 <td className="p-[10px_5px_10px_16px] w-7">
