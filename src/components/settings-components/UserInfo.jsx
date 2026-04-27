@@ -20,15 +20,7 @@ export default function UserInfo({profile}) {
         return role === "tenant" ? "Utilisateur" : role;
     };
 
-    const shortId = (id) => {
-        if (!id) return "-";
-        return id.slice(0, 8) + "...";
-    };
     const userInfo =[
-        {
-            label: "ID utilisateur",
-            value: shortId(profile?.id),
-        },
         {
             label: "Email",
             value: profile?.email,
@@ -36,10 +28,6 @@ export default function UserInfo({profile}) {
         {
             label: "Rôle",
             value: formatRole(profile?.role),
-        },
-        {
-            label: "Tenant ID",
-            value: shortId(profile?.tenant_id),
         },
         {
             label: "Compte créé le",
