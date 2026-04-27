@@ -1,10 +1,6 @@
-import { useState } from "react";
 import AgentsTable from "./AgentsTable";
-import AgentDetails from "./AgentDetails";
 
-export default function AgentsOverview({agents, selectedAgent, setSelectedAgent}) {
-    const [openAgentDetails, setOpenAgentsDetails] = useState(false);
-
+export default function AgentsOverview({agents, setSelectedAgent, setOpenAgentsDetails}) {
     return(
         <div className="min-h-screen bg-[rgba(3,44,166,0.09)] py-6">
             <div className="max-w-7xl mx-auto lg:px-6 px-4">
@@ -16,11 +12,6 @@ export default function AgentsOverview({agents, selectedAgent, setSelectedAgent}
                 setSelectedAgent={setSelectedAgent}
                 setOpenAgentsDetails={setOpenAgentsDetails} />
             </div>
-            {openAgentDetails && (
-                <AgentDetails
-                selectedAgent={selectedAgent}
-                onClose={() => setOpenAgentsDetails(false)} />
-            )}
         </div>
     )
 }

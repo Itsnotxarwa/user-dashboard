@@ -3,10 +3,12 @@ import TopBar from "./dashboard-components/TopBar";
 import Sidebar from "./sidebar";
 import { handleUnauthorized } from "../utils/auth";
 import AgentsOverview from "./agents-components/AgentsOverview";
+import AgentDetails from "./agents-components/AgentDetails";
 
 export default function Agents() {
     const [agents, setAgents] = useState([]);
     const [selectedAgent, setSelectedAgent] = useState(null);
+    const [openAgentDetails, setOpenAgentsDetails] = useState(false);
 
     useEffect(() => {
         const getAgents = async () => {
@@ -53,8 +55,13 @@ export default function Agents() {
                 agents={agents} 
                 setSelectedAgent={setSelectedAgent}
                 selectedAgent={selectedAgent}
-                />
+                setOpenAgentsDetails={setOpenAgentsDetails} />
             </main>
+            {openAgentDetails && (
+                <AgentDetails
+                selectedAgent={selectedAgent}
+                onClose={() => setOpenAgentsDetails(false)} />
+            )}
         </div>
     )
 }
