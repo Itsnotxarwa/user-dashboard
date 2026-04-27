@@ -49,7 +49,7 @@ export default function Agents() {
     return(
         <div className="flex min-h-screen bg-white text-black">
             <Sidebar />
-            <main className="bg-linear-to-br from-white to-[rgba(3,44,166,0.09)] flex-1">
+            <main className="bg-[rgba(3,44,166,0.09)] flex-1">
                 <TopBar activeNav={{name: "Mon IA téléphonique"}} />
                 <AgentsOverview 
                 agents={agents} 

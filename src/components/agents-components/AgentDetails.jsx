@@ -74,8 +74,8 @@ export default function AgentDetails({selectedAgent, onClose}) {
         }
     ] : []
     return(
-        <div className="flex-col bg-white border-l scroll overflow-y-auto w-120 shrink-0 border-[rgba(3,44,166,.12)]
-        shadow-[-4px_0_24px_rgba(3,44,166,.07)]">
+        <div className="flex-col h-screen bg-white border-l scroll overflow-y-auto w-120 shrink-0 
+        border-[rgba(3,44,166,.12)] shadow-[-4px_0_24px_rgba(3,44,166,.07)]">
             {/* HEADER */}
             <div className="sticky top-0 z-10 flex items-center gap-3 px-5 py-4 border-b border-[rgba(3,44,166,.08)]
             bg-linear-to-br from-white to-[rgba(3,44,166,.04)]">
