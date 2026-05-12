@@ -30,7 +30,7 @@ export default function CallsHistory() {
             params.append("page", page);
             params.append("page_size", limit);
 
-            const url = `https://api.voixup.fr/https://api.voixup.fr/me/calls/sessions?${params.toString()}`;
+            const url = `https://api.voixup.fr/me/calls/sessions?${params.toString()}`;
 
             const response = await fetch(url, {
                 method: "GET",

@@ -5,7 +5,7 @@ export default function AgentsOverview({agents, setSelectedAgent, setOpenAgentsD
         <div className="py-6">
             <div className="max-w-7xl mx-auto lg:px-6 px-4">
                 <h2 className="text-[17px] font-extrabold text-[#0a1628] tracking-tight mb-6">
-                    Historique des appels
+                    Mon IA téléphonique
                 </h2>
             
                 <AgentsTable agents={agents}
