@@ -92,7 +92,7 @@ export default function CallsTable({sessions, setSelectedSession, setOpenDrawer,
                                         : ""}
                                         ${session.call_type === "inbound" ? "text-[#059669] bg-[rgba(5,150,105,.08)] border-[rgba(5,150,105,.020)]" 
                                         : ""}`}>
-                                        {session.call_type}
+                                        {session.call_type === "outbound" ? "Sortant" : "Entrants"}
                                     </span>
                                     </div>
                                 </td>
@@ -100,7 +100,7 @@ export default function CallsTable({sessions, setSelectedSession, setOpenDrawer,
                                     {formatDuration(session.duration_seconds)}
                                 </td>
                                 <td className="px-5 py-2.5 text-[13px] text-center">
-                                     <div className="flex justify-center items-center">
+                                    <div className="flex justify-center items-center">
                                         <span className={`py-1 px-2  flex items-center gap-1 rounded-full border ${session.call_status === "ANSWERED" 
                                         ? "bg-[rgba(5,150,105,.08)] text-[#059669] border-[rgba(5,150,105,.20)]" 
                                         : "bg-[rgba(220,38,38,.08)] text-[#dc2626] border-[rgba(220,38,38,.18)]"}`}>
