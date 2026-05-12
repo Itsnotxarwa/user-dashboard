@@ -1,6 +1,6 @@
 import { ChevronDown, Bot, User } from "lucide-react";
 
-export default function CallsTable({filteredSessions, setSelectedSession, setOpenDrawer}) {
+export default function CallsTable({sessions, setSelectedSession, setOpenDrawer, loading}) {
 
     const formatDate = (datetime) => datetime.split("T")[0];
     const formatDuration = (seconds) => {
@@ -12,7 +12,23 @@ export default function CallsTable({filteredSessions, setSelectedSession, setOpe
     return(
         <div className="bg-white rounded-2xl overflow-hidden mb-6 border border-[rgba(3,44,166,.09)] 
         shadow-[0_2px_12px_rgba(3,44,166,.06)]">
-            {filteredSessions.length === 0 ? (
+            {loading ? (
+                <tr>
+                    <td
+                        colSpan="5"
+                        className="text-center py-6"
+                    >
+                        <div className="flex items-center justify-center">
+                            <svg className="w-[3.25em] origin-center animate-[spin_2s_linear_infinite]" 
+                            viewBox="25 25 50 50">
+                                                    <circle
+                                className="loading-circle" 
+                                r="20" cy="50" cx="50"></circle>
+                            </svg>
+                        </div>
+                    </td>
+                </tr>
+            ) :sessions.length === 0 ? (
                 <div className="py-6 text-center text-sm text-slate-600 rounded-xl
                 border-dashed border-[rgba(3,44,166,0.12)]">
                     Aucun appel pour le moment 
@@ -45,14 +61,14 @@ export default function CallsTable({filteredSessions, setSelectedSession, setOpe
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredSessions?.length === 0 ? (
+                    {sessions?.length === 0 ? (
                         <tr>
                             <td colSpan="8" className="text-center py-6 text-sm text-slate-600">
                                 Aucun appel pour le moment
                             </td>
                         </tr>
                     ) : (
-                    filteredSessions?.map((session) => {
+                    sessions?.map((session) => {
                         return(
                         <>
                             <tr  
