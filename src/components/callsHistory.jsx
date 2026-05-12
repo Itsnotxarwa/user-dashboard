@@ -5,6 +5,7 @@ import CallsHeader from "./calls-components/CallsHeader";
 import CallsTable from "./calls-components/callsTable";
 import { handleUnauthorized } from "../utils/auth.js";
 import SessionDrawer from "./calls-components/SessionDrawer";
+import CallsOverview from "./calls-components/CallsOverview.jsx";
 export default function CallsHistory() {
     const [sessions, setSessions] = useState([]);
     const [selectedSession, setSelectedSession] = useState(null);
@@ -50,14 +51,21 @@ export default function CallsHistory() {
 
     getCallSessions();
     },[])
+
+    const [range, setRange] = useState("30");
+    
     return(
         <div className="flex min-h-screen bg-white text-black">
             <Sidebar />
             <main className="bg-[rgba(3,44,166,0.09)] flex-1">
                 <TopBar activeNav={{name: "Historique des appels"}} />
-                <div className="p-6">
-                    <CallsHeader onChange={(page, limit) => { sessions(page, limit)}} sessions={sessions} />
-                    {sessions.length === 0 ? null : (
+                <div className="py-6">
+                    <div className="max-w-7xl mx-auto lg:px-6 px-4">
+                        <CallsHeader range={range} setRange={setRange} />
+
+                        <CallsOverview range={range} />
+
+                        {sessions.length === 0 ? null : (
                         <div className="flex items-center gap-3 my-4">
                             <div className="flex gap-1 p-1 rounded-xl bg-[rgba(3,44,166,.05)] border
                             border-[rgba(3,44,166,.10)]">
@@ -84,11 +92,12 @@ export default function CallsHistory() {
                         })}
                     </div>
                 </div>
-                )}
-                    <CallsTable 
-                    filteredSessions={filteredSessions} 
-                    setSelectedSession={setSelectedSession}
-                    setOpenDrawer={setOpenDrawer} />
+                    )}
+                        <    CallsTable 
+                        filteredSessions={filteredSessions} 
+                        setSelectedSession={setSelectedSession}
+                        setOpenDrawer={setOpenDrawer} />
+                    </div>
                 </div>
             </main>
             {openDrawer && (

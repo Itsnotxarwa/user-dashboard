@@ -58,6 +58,9 @@ export default function UserDashboard() {
             <Sidebar />
             <main className="bg-[rgba(3,44,166,0.09)] flex-1">
                 <TopBar activeNav={{name: "Tableau de bord"}} isActive={isActive} />
+                <div className="py-6">
+                    <div className="max-w-7xl mx-auto lg:px-6 px-4"></div>
+                </div>
             </main>
 
         </div>

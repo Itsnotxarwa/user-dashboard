@@ -59,7 +59,7 @@ export default function SessionDrawer({selectedSession, onClose, open}) {
                             <span className={`w-2 h-2 shrink-0 rounded-full
                                 ${selectedSession.call_status === "ANSWERED" ? "bg-[#22c55e] shadow-[0_0_5px_#22c55e]" : "bg-[#f87171] shadow-[0_0_5px_#f87171]"}`}>
                             </span>
-                            {selectedSession?.call_status}
+                            {selectedSession?.call_status === "ANSWERED" ? "Répondus" : "Occupé"}
                         </span>
                         {hasType && (
                         <span className={`text-xs px-3 py-1 rounded-full flex items-center gap-1 border
@@ -108,7 +108,7 @@ export default function SessionDrawer({selectedSession, onClose, open}) {
                                 Raison fin
                             </div>
                             <div className="text-xs font-semibold text-[#374151] font-mono">
-                                {selectedSession?.disconnect_reason || ""}
+                                {selectedSession?.disconnect_reason === "HANGUP_BY_CALLEE" ? "Raccroché par l’interlocuteur" : "Raccroché par l’assistant IA"}
                             </div>
                         </div>
 

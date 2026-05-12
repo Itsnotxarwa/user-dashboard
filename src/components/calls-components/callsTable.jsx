@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { ChevronDown, Bot, User } from "lucide-react";
 
 export default function CallsTable({filteredSessions, setSelectedSession, setOpenDrawer}) {
-    const [openRow, setOpenRow] = useState(null);
 
     const formatDate = (datetime) => datetime.split("T")[0];
     const formatDuration = (seconds) => {
@@ -11,9 +9,6 @@ export default function CallsTable({filteredSessions, setSelectedSession, setOpe
         return `${min}:${sec.toString().padStart(2, "0")}`;
     };
 
-    const toggleRow = (id) => {
-        setOpenRow(openRow === id ? null : id)
-    }
     return(
         <div className="bg-white rounded-2xl overflow-hidden mb-6 border border-[rgba(3,44,166,.09)] 
         shadow-[0_2px_12px_rgba(3,44,166,.06)]">
