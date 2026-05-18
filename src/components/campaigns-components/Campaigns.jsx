@@ -1,3 +1,4 @@
+import { Edit, Trash, Play, Pause, X, TriangleAlert, File, FileUp } from "@phosphor-icons/react";
 import { useState, useRef } from "react";
 import { handleUnauthorized } from "../../utils/auth";
 

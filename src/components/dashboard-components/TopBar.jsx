@@ -30,7 +30,7 @@ export default function TopBar({activeNav, isActive, setShowCreateModal}) {
             border border-[#032ca6] shadow-[0_4px_14px_rgba(3,44,166,0.25)] cursor-pointer"
             onClick={() => setShowCreateModal(true)}>
                 <Plus />
-                Add Campaign
+                Ajouter une campagne
             </button>
             )}
 
