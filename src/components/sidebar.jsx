@@ -44,7 +44,8 @@ export default function Sidebar() {
 
     return(
             <aside className="flex flex-col w-64 px-4 md:px-6 h-screen
-            py-8 transition-all duration-300 ease-in-out">
+            py-8 transition-all duration-300 ease-in-out justify-between">
+                <div>
                 <div className="flex items-center justify-center">
                     <img src={Logo} alt="Mazia" className="w-30" />
                 </div>
@@ -67,6 +68,7 @@ export default function Sidebar() {
                         </NavLink>
                     ))}
                 </nav>
+                </div>
 
                 <div className="border-t border-gray-100 py-3">
                     <div className="flex items-center gap-0.5 p-2.5 rounded-xl bg-gray-50 
