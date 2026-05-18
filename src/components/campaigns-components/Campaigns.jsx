@@ -1,4 +1,4 @@
-import { Edit, Trash, Play, Pause, X, TriangleAlert, File, FileUp } from "@phosphor-icons/react";
+import { Edit, Trash, Play, Pause, X, TriangleAlert, File, FileUp } from "lucide-react";
 import { useState, useRef } from "react";
 import { handleUnauthorized } from "../../utils/auth";
 
@@ -142,13 +142,21 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
                 </tr>
             ) :  campaigns.length === 0 ? (
                 <div className="py-6 text-center text-sm text-slate-400">
-                    Aucun campagnes pour le moment
+                    Aucun campagne pour le moment
                 </div>
             ) : (
                 <table className="w-full border-collapse">
                     <thead className="bg-[rgba(3,44,166,.025)] border-b border-[rgba(3,44,166,.07)]">
                         <tr>
-                            {["Campaign Name", "Agent", "Status", "Start Date", "Batch", "Time Slots", "Actions", "Recipients", ""].map((h, i) => (
+                            {[ "Nom de la campagne",
+                            "Agent",
+                            "Statut",
+                            "Date de début",
+                            "Lot",
+                            "Créneaux horaires",
+                            "Actions",
+                            "Destinataires",
+                            ""].map((h, i) => (
                                 <th key={i} className="text-left px-5 py-3 text-xs font-medium tracking-widest uppercase text-slate-400">
                                     {h}
                                 </th>
