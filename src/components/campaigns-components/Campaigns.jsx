@@ -148,15 +148,7 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
                 <table className="w-full border-collapse">
                     <thead className="bg-[rgba(3,44,166,.025)] border-b border-[rgba(3,44,166,.07)]">
                         <tr>
-                            {[ "Nom de la campagne",
-                            "Agent",
-                            "Statut",
-                            "Date de début",
-                            "Lot",
-                            "Créneaux horaires",
-                            "Actions",
-                            "Destinataires",
-                            ""].map((h, i) => (
+                            {[ "Nom de la campagne", "Assisstant IA", "Statut", "Date de début", "Lot", "Créneaux horaires", "Actions", "Destinataires", ""].map((h, i) => (
                                 <th key={i} className="text-left px-5 py-3 text-xs font-medium tracking-widest uppercase text-slate-400">
                                     {h}
                                 </th>
@@ -211,7 +203,7 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
                                                     bg-[rgba(5,150,105,.08)] text-[#059669] border border-[rgba(5,150,105,.25)]
                                                     ${!hasRecipients ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}>
                                                     <Play size={12} />
-                                                    Start
+                                                    Démarrer
                                                 </button>
                                             )}
 
@@ -232,7 +224,7 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
                                                     border border-[rgba(5,150,105,.25)] flex items-center gap-1 text-sm
                                                     font-medium py-1 px-2.5 rounded-[20px]">
                                                     <Play size={12} />
-                                                    Resume
+                                                    Reprendre
                                                 </button>
                                             )}
 
@@ -243,7 +235,7 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
                                                     border border-[rgba(220,38,38,.20)] flex items-center gap-1 text-sm
                                                     font-medium py-1 px-2.5 rounded-[20px]">
                                                     <X size={12} />
-                                                    Cancel
+                                                    Annuler
                                                 </button>
                                             )}
                                         </div>
@@ -255,7 +247,7 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
                                             bg-[rgba(245,158,11,.08)] rounded-[20px] p-[3px_10px] text-[#d97706]
                                             border border-[rgba(245,158,11,.22)]">
                                                 <TriangleAlert size={12} />
-                                                No File
+                                                Aucun fichier
                                             </div>
                                         ) : (
                                             <div className="flex items-center text-sm gap-1 font-medium">
@@ -277,13 +269,13 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
                                                 className="cursor-pointer bg-[rgba(3,44,166,.07)] text-[#032ca6] border rounded-[20px]
                                                 text-sm p-[3px_10px] font-medium border-[rgba(3,44,166,.20)] flex items-center gap-1">
                                                 <Edit size={12} />
-                                                Edit
+                                                Modifier
                                             </button>
                                             <button
                                                 className="cursor-pointer bg-[rgba(220,38,38,.06)] text-[#dc2626] border rounded-[20px]
                                                 text-sm p-[3px_10px] font-medium border-[rgba(220,38,38,.16)] flex items-center gap-1">
                                                 <Trash size={12} />
-                                                Delete
+                                                Supprimer
                                             </button>
                                             {!hasRecipients || c.status === "DRAFT" ? (
                                                 <button
@@ -291,14 +283,14 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
                                                     className="cursor-pointer bg-[rgba(3,44,166,.07)] text-[#032ca6] border rounded-[20px] gap-1
                                                     border-[rgba(3,44,166,.20)] flex items-center text-sm p-[3px_10px] font-medium">
                                                     <FileUp size={12} />
-                                                    Upload
+                                                    Importer
                                                 </button>
                                             ) : (
                                                 <button
                                                     className="cursor-pointer bg-[rgba(245,158,11,.06)] text-[#d97706] border rounded-[20px] gap-1
                                                     border-[rgba(245,158,11,.22)] flex items-center text-sm p-[3px_10px] font-medium">
                                                     <Trash size={12} />
-                                                    Recipients
+                                                    Destinataires
                                                     <span className="text-[9px] p-[1px_5px] rounded-sm bg-[rgba(245,158,11,.12)]">
                                                         {c.recipients.length}
                                                     </span>

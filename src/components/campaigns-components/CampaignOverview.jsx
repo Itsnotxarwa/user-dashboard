@@ -84,8 +84,13 @@ export default function CampaignOverview() {
                     w-65 text-[#0a1628]"
                     >
                         <option value="">Tous les statuts</option>
-                        <option value="active">Actif</option>
-                        <option value="inactive">Inactif</option>
+                        <option value="READY">Prête</option>
+                        <option value="DRAFT">Brouillon</option>
+                        <option value="RUNNING">En cours</option>
+                        <option value="PAUSED">En pause</option>
+                        <option value="FAILED">Échouée</option>
+                        <option value="CANCELLED">Annulée</option>
+                        <option value="COMPLETED">Terminée</option>
                     </select>
                 </div>
 
