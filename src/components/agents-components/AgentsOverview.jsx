@@ -1,12 +1,16 @@
 import AgentsTable from "./AgentsTable";
+import Logo from "../../assets/image.png";
 
 export default function AgentsOverview({agents, setSelectedAgent, setOpenAgentsDetails}) {
     return(
         <div className="py-6">
             <div className="max-w-7xl mx-auto lg:px-6 px-4">
-                <h2 className="text-[17px] font-extrabold text-[#0a1628] tracking-tight mb-6">
-                    Mon IA téléphonique
-                </h2>
+                <div>
+                    <img src={Logo} alt="Logo" className="w-14" />
+                    <h2 className="text-[17px] font-extrabold text-[#0a1628] tracking-tight mb-6">
+                        Mon IA téléphonique
+                    </h2>
+                </div>
             
                 <AgentsTable agents={agents}
                 setSelectedAgent={setSelectedAgent}
