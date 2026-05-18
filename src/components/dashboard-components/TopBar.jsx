@@ -13,7 +13,7 @@ export default function TopBar({activeNav, isActive, setShowCreateModal}) {
                 </span>
             </div>
 
-            {activeNav?.name === "Tableau de bord" && (
+            {activeNav?.label === "Tableau de bord" && (
             <div className="flex items-center gap-1.5 ml-auto">
                 <span className={`w-1.5 h-1.5 rounded-full
                     ${isActive? "bg-[#22c55e] shadow-[0_0_5px_#22c55e]" : "bg-[#6b7280] shadow-[0_0_5px_#6b7280]"}`}></span>
@@ -23,7 +23,7 @@ export default function TopBar({activeNav, isActive, setShowCreateModal}) {
             </div>
             )}
 
-            {activeNav?.name === "Campagnes" && (
+            {activeNav?.label === "Campagnes" && (
             <button
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl ml-auto
             text-xs font-bold text-white transition-all bg-[#032ca6]

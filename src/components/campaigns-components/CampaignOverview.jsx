@@ -22,8 +22,8 @@ export default function CampaignOverview() {
 
             const params = new URLSearchParams();
 
-            if (agentId) params.append("agentId", agentId);
-            if (startDate) params.append("startDate", startDate);
+            if (agentId) params.append("agent_id", agentId);
+            if (startDate) params.append("start_date", startDate);
             if (status) params.append("status", status);
 
             const url = `https://api.voixup.fr/me/campaigns?${params.toString()}`;
