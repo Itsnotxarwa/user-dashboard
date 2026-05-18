@@ -112,6 +112,16 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
         FAILED:    { badge: "bg-[rgba(220,38,38,.08)] text-[#dc2626] border-[rgba(220,38,38,.20)]",   dot: "bg-[#ef4444]" },
         CANCELLED: { badge: "bg-[rgba(244,114,182,.08)] text-[#ec4899] border-[rgba(244,114,182,.20)]", dot: "bg-[#ec4899]" },
     };
+
+    const STATUS_LABELS = {
+        READY: "Prête",
+        RUNNING: "En cours",
+        PAUSED: "En pause",
+        COMPLETED: "Terminée",
+        DRAFT: "Brouillon",
+        FAILED: "Échouée",
+        CANCELLED: "Annulée",
+    };
     
     return(
         <div className="bg-white rounded-2xl overflow-hidden mb-6 border border-[rgba(3,44,166,.09)]
@@ -127,8 +137,8 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
             {loading ? (
                 <tr>
                     <td
-                        colSpan="7"
-                        className="text-center py-6"
+                        colSpan="9"
+                        className="text-center py-6 flex justify-center items-center"
                     >
                         <div className="flex items-center justify-center">
                             <svg className="w-[3.25em] origin-center animate-[spin_2s_linear_infinite]" 
@@ -140,15 +150,15 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
                         </div>
                     </td>
                 </tr>
-            ) :  campaigns.length === 0 ? (
+            ) :  campaigns.length === 0 && !loading ? (
                 <div className="py-6 text-center text-sm text-slate-400">
-                    Aucun campagne pour le moment
+                    Aucune campagne pour le moment
                 </div>
             ) : (
                 <table className="w-full border-collapse">
                     <thead className="bg-[rgba(3,44,166,.025)] border-b border-[rgba(3,44,166,.07)]">
                         <tr>
-                            {[ "Nom de la campagne", "Assisstant IA", "Statut", "Date de début", "Lot", "Créneaux horaires", "Actions", "Destinataires", ""].map((h, i) => (
+                            {[ "Nom de la campagne", "Assistant IA", "Statut", "Date de début", "Lot", "Créneaux horaires", "Actions", "Destinataires", ""].map((h, i) => (
                                 <th key={i} className="text-left px-5 py-3 text-xs font-medium tracking-widest uppercase text-slate-400">
                                     {h}
                                 </th>
@@ -171,7 +181,7 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
                                         <div className="flex justify-center items-center">
                                             <span className={`flex items-center gap-1 text-sm font-medium py-1 px-2.5 rounded-[20px] border ${style.badge}`}>
                                                 <span className={`w-1.5 h-1.5 shrink-0 rounded-full ${style.dot}`} />
-                                                {c.status || ""}
+                                                {STATUS_LABELS[c.status] || c.status}
                                             </span>
                                         </div>
                                     </td>
