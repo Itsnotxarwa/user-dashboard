@@ -11,7 +11,7 @@ export default function CreateCampaign({ onClose, onCancel, setCampaigns }) {
             const token = localStorage.getItem("token");
 
         const res = await fetch(
-            `https://api.voixup.fr/admin/me/agents`,
+            `https://api.voixup.fr/me/agents`,
             {
                 headers: {
                 accept: "application/json",
