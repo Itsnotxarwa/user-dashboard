@@ -14,7 +14,7 @@ export default function SessionExpired() {
                     Your session has expired. Please log in again to continue.
                 </p>
                 <a
-                    href="https://mazia-login.vercel.app/" 
+                    href="http://auth.mazia.ai" 
                     className="w-full text-center bg-[#032ca6] text-white text-sm 
                     font-medium py-2.5 px-6 rounded-xl hover:bg-[#0237c9] transition-colors"
                 >
