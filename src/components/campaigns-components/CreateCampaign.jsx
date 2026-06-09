@@ -11,14 +11,11 @@ export default function CreateCampaign({ onClose, onCancel, setCampaigns }) {
 
         const res = await apiFetch(`https://api.voixup.fr/me/agents`);
 
-        if (!res) {
-            alert("Network error, check your connection");
-            return;
-        }
+        if (!res) return;
         
-        if (res.ok) {
+        if (!res.ok) {
             const data = await res.json();
-            alert(data.message || "Agents fetched successfully");
+            alert(data.message || "failed to fetch agents");
             setAgents([]);
         }
             const data = await res.json();

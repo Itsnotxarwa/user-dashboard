@@ -37,11 +37,6 @@ export default function CallsHistory() {
 
             if (!response) return;
             
-            if (response.ok) {
-                const data = await response.json();
-                setSessions(data || []);
-                return;
-            }
             
             const data = await response.json();
             setSessions(data || []);

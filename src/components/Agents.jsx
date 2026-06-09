@@ -19,16 +19,8 @@ export default function Agents() {
                     });
 
                 if (!res) return;
-
-                if (res.ok) {
-                    const data = await res.json();
-                    setAgents(data);
-                    return;
-                }
                 
                 const data = await res.json();
-                console.log(data);
-
                 setAgents(data);
                 
             } catch (err) {
