@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import TopBar from "./dashboard-components/TopBar";
 import Sidebar from "./sidebar";
-import { handleUnauthorized } from "../utils/auth";
 import AgentsOverview from "./agents-components/AgentsOverview";
 import AgentDetails from "./agents-components/AgentDetails";
+import apiFetch from "./shared/apiFetch";
 
 export default function Agents() {
     const [agents, setAgents] = useState([]);
@@ -13,23 +13,16 @@ export default function Agents() {
     useEffect(() => {
         const getAgents = async () => {
             try {
-                const token = localStorage.getItem("token");
 
-                const res = await fetch("https://api.voixup.fr/me/agents", {
+                const res = await apiFetch("https://api.mazia.ai/me/agents", {
                     method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`,
-                    },
                     });
 
-                if (res.status === 401) {
-                    handleUnauthorized(401);
-                    return;
-                }
+                if (!res) return;
 
-                if (res.status === 404) {
-                    setAgents([]);
+                if (res.ok) {
+                    const data = await res.json();
+                    setAgents(data);
                     return;
                 }
                 
@@ -40,6 +33,7 @@ export default function Agents() {
                 
             } catch (err) {
                 console.error(err);
+                alert("Network error, check your connection");
                 setAgents([]);
             }
         };

@@ -1,39 +1,20 @@
 import { useState, useEffect } from "react";
 import Sidebar from "./sidebar";
 import TopBar from "./dashboard-components/TopBar";
-import { handleUnauthorized } from "../utils/auth";
+import apiFetch from "./shared/apiFetch";
 
 
 export default function UserDashboard() {
-    const [token] = useState(() => {
-        const params = new URLSearchParams(window.location.search);
-        const urlToken = params.get("token");
-        if (urlToken) {
-            localStorage.setItem("token", urlToken);
-            return urlToken;
-        }
-        return localStorage.getItem("token");
-    });
 
     const [isActive, setIsActive] = useState(true);
 
     useEffect(() => {
         const getProfile = async () => {
         try{
-            const token = localStorage.getItem("token");
-            console.log("TOKEN:", token);
 
-            const res = await fetch("https://api.voixup.fr/me/profile", {
-                headers: {
-                "Authorization": `Bearer ${token}`,
-                "accept": "application/json"
-                }   
-            });
+            const res = await apiFetch("https://api.mazia.ai/me/profile");
 
-            if (res.status === 401) {
-                handleUnauthorized(401);
-                return;
-            }
+            if (!res) return;
 
             if (!res.ok) {
                 const errorData = await res.json();
@@ -46,6 +27,7 @@ export default function UserDashboard() {
             setIsActive(data.is_active);
             
         } catch(err) {
+            alert("Network error, check your connection");
             console.log(err)
         }
     

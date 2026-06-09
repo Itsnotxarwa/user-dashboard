@@ -3,7 +3,7 @@ import Sidebar from "./sidebar";
 import TopBar from "./dashboard-components/TopBar";
 import UserInfo from "./settings-components/UserInfo";
 import ChangePassword from "./settings-components/ChangePassword";
-import { handleUnauthorized } from "../utils/auth.js";
+import apiFetch from "./shared/apiFetch";
 
 
 export default function Settings() {
@@ -12,20 +12,10 @@ export default function Settings() {
     useEffect(() => {
         const getProfile = async () => {
         try{
-            const token = localStorage.getItem("token");
-            console.log("TOKEN:", token);
 
-            const res = await fetch("https://api.voixup.fr/me/profile", {
-                headers: {
-                "Authorization": `Bearer ${token}`,
-                "accept": "application/json"
-                }   
-            });
+            const res = await apiFetch("https://api.mazia.ai/me/profile");
 
-            if (res.status === 401) {
-                handleUnauthorized(401);
-                return;
-            }
+            if (!res) return;
 
             if (!res.ok) {
                 const errorData = await res.json();
@@ -38,6 +28,7 @@ export default function Settings() {
             setProfile(data);
             
         } catch(err) {
+            alert("Network error, check your connection");
             console.log(err)
         }
     

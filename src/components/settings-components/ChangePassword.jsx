@@ -1,5 +1,6 @@
 import { Key, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
+import apiFetch from "../shared/apiFetch";
 
 export default function ChangePassword() {
     const [show, setShow] = useState({
@@ -30,18 +31,19 @@ export default function ChangePassword() {
 
     const changePassword = async (currentPassword, newPassword) => {
         try {
-            const token = localStorage.getItem("token");
             
-            const res = await fetch(
-            `https://api.voixup.fr/me/password?current_password=${encodeURIComponent(currentPassword)}&new_password=${encodeURIComponent(newPassword)}`,
+            const res = await apiFetch(
+            `https://api.voixup.fr/me/password?current_password`,
             {
                 method: "PATCH",
-                headers: {
-                Authorization: `Bearer ${token}`,
-                accept: "application/json",
-                },
+                body: JSON.stringify({
+                    current_password: currentPassword,
+                    new_password: newPassword,
+                }),
             }
             );
+
+            if (!res) return;
             
             const data = await res.json();
 
@@ -55,9 +57,10 @@ export default function ChangePassword() {
             alert("Password changed successfully ✅");
 
             } catch (err) {
+                alert("Network error, check your connection");
                 console.log(err);
             }
-        };
+    };
     return(
         <div className="p-6">
             <div className="bg-white rounded-2xl p-6">

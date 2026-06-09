@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import KpiCards from "./kpiCards";
 import CallsBarChart from "./CallsBarChart.jsx";
 import CallSummary from "./CallsSummary.jsx";
-import { handleUnauthorized } from "../../utils/auth.js";
+import apiFetch from "../shared/apiFetch.jsx";
 
 export default function CallsOverview({ range }) {
     const [calls, setCalls] = useState(null);
@@ -10,24 +10,15 @@ export default function CallsOverview({ range }) {
     useEffect(() => {
             const fetchCalls = async () => {
                 try {
-                const token = localStorage.getItem("token");
         
-                const res = await fetch(`https://api.voixup.fr/me/calls/overview`,{
-                    headers: 
-                    {
-                        accept: "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
+                const res = await apiFetch(`https://api.voixup.fr/me/calls/overview`);
     
-                if (res.status === 401) {
-                    handleUnauthorized(401);
-                    return;
-                }
+                if (!res) return;
     
                 const data = await res.json();
                 setCalls(data);
             } catch (err) {
+                alert("Network error, check your connection");
                 console.error(err)
                 setCalls(null);
             }

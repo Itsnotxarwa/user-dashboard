@@ -1,6 +1,6 @@
 import { Edit, Trash, Play, Pause, X, TriangleAlert, File, FileUp } from "lucide-react";
 import { useState, useRef } from "react";
-import { handleUnauthorized } from "../../utils/auth";
+import apiFetch from "../shared/apiFetch";
 
 export default function Campaigns({campaigns, setCampaigns, loading }) {
 
@@ -17,24 +17,19 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
         if (!selectedFile) return;
 
         try {
-            const token = localStorage.getItem("token");
             const formData = new FormData();
             formData.append("file", selectedFile);
 
-            const res = await fetch(
+            const res = await apiFetch(
                 `https://api.voixup.fr/me/campaigns/${uploadingCampaignId}/recipients`,
                 {
                     method: "POST",
-                    headers: {
-                        accept: "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
                     body: formData,
                 }
             );
 
-            if (res.status === 401) {
-                handleUnauthorized(401);
+            if (!res) {
+                alert("Network error, check your connection");
                 return;
             }
 
@@ -62,23 +57,17 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
 
     const updateCampaignStatus = async (campaignId, status) => {
         try {
-            const token = localStorage.getItem("token");
 
-            const res = await fetch(
+            const res = await apiFetch(
                 `https://api.voixup.fr/me/campaigns/${campaignId}/status`,
                 {
                     method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                        accept: "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
                     body: JSON.stringify({ status }),
                 }
             );
 
-            if (res.status === 401) {
-                handleUnauthorized(401);
+            if (!res) {
+                alert("Network error, check your connection");
                 return;
             }
 

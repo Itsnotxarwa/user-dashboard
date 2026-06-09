@@ -1,6 +1,6 @@
 import { Plus, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { handleUnauthorized } from "../../utils/auth";
+import apiFetch from "../shared/apiFetch";
 
 export default function CreateCampaign({ onClose, onCancel, setCampaigns }) {
     const [agents, setAgents] = useState([]);
@@ -8,34 +8,25 @@ export default function CreateCampaign({ onClose, onCancel, setCampaigns }) {
     useEffect(() => {
         const fetchAgents = async () => {
             try {
-            const token = localStorage.getItem("token");
 
-        const res = await fetch(
-            `https://api.voixup.fr/me/agents`,
-            {
-                headers: {
-                accept: "application/json",
-                Authorization: `Bearer ${token}`,
-                },
-            }
-        );
+        const res = await apiFetch(`https://api.voixup.fr/me/agents`);
 
-        if (res.status === 401) {
-            handleUnauthorized(401);
+        if (!res) {
+            alert("Network error, check your connection");
             return;
         }
         
-        if (res.status === 404) {
+        if (res.ok) {
+            const data = await res.json();
+            alert(data.message || "Agents fetched successfully");
             setAgents([]);
-            return;
         }
             const data = await res.json();
-            console.log(data)
-
             setAgents(data);
 
             } catch (err) {
             console.error(err);
+            alert("Network error, check your connection");
             setAgents([]);
             }
         };
@@ -79,15 +70,9 @@ export default function CreateCampaign({ onClose, onCancel, setCampaigns }) {
         if (loading) return;
         try {
             setLoading(true);
-            const token = localStorage.getItem("token");
 
-            const res = await fetch(`https://api.voixup.fr/me/campaign`, {
+            const res = await apiFetch(`https://api.voixup.fr/me/campaign`, {
                 method: "POST",
-                headers: {
-                    accept: "application/json",
-                    "Content-Type": "application/json",
-                    authorization: `Bearer ${token}`,
-                },
                 body: JSON.stringify({
                     name: campaignData.name,
                     agent_id: campaignData.agent_id,
@@ -97,15 +82,12 @@ export default function CreateCampaign({ onClose, onCancel, setCampaigns }) {
                 }),
             });
 
-            if (res.status === 401) {
-                handleUnauthorized(401);
-                return;
-            }
+            if (!res) return;
 
             const data = await res.json();
 
             if (!res.ok) {
-                throw new Error(data?.detail || "Creation failed");
+                alert(data.message || "Failed to create campaign");
             }
 
             setCampaigns(prev => [...prev, data]);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { handleUnauthorized }  from "../../utils/auth";
 import Logo from "../../assets/image.png";
 import Campaigns from "./Campaigns";
+import apiFetch from "../shared/apiFetch";
 
 export default function CampaignOverview() {
 
@@ -18,7 +18,6 @@ export default function CampaignOverview() {
             try {
             setLoading(true);
 
-            const token = localStorage.getItem("token");
 
             const params = new URLSearchParams();
 
@@ -28,22 +27,19 @@ export default function CampaignOverview() {
 
             const url = `https://api.voixup.fr/me/campaigns?${params.toString()}`;
     
-            const res = await fetch(url,{
+            const res = await apiFetch(url, {
                 headers: {
                 accept: "application/json",
-                authorization: `Bearer ${token}`,
                 },
             });
 
-            if (res.status === 401) {
-                handleUnauthorized(401);
-                return;
-            }
+            if (!res) return;
 
             const data = await res.json();
             console.log("Campaigns:", data);
             setCampaigns(data);
         } catch (error) {
+            alert("Network error, check your connection");
             console.error("Error fetching campaigns:", error);
             setCampaigns([]);
         } finally {

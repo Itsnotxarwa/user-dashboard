@@ -3,9 +3,10 @@ import Sidebar from "./sidebar";
 import TopBar from "./dashboard-components/TopBar";
 import CallsHeader from "./calls-components/CallsHeader";
 import CallsTable from "./calls-components/callsTable";
-import { handleUnauthorized } from "../utils/auth.js";
 import SessionDrawer from "./calls-components/SessionDrawer";
 import CallsOverview from "./calls-components/CallsOverview.jsx";
+import apiFetch from "./shared/apiFetch";
+
 export default function CallsHistory() {
     const [sessions, setSessions] = useState([]);
     const [selectedSession, setSelectedSession] = useState(null);
@@ -17,8 +18,6 @@ export default function CallsHistory() {
     const [type, setType] = useState("");
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(20);
-
-    const token = localStorage.getItem("token");
     
     const fetchSessions = useCallback(async () => {
         try{
@@ -30,39 +29,31 @@ export default function CallsHistory() {
             params.append("page", page);
             params.append("page_size", limit);
 
-            const url = `https://api.voixup.fr/me/calls/sessions?${params.toString()}`;
+            const url = `https://api.mazia.ai/me/calls/sessions?${params.toString()}`;
 
-            const response = await fetch(url, {
+            const response = await apiFetch(url, {
                 method: "GET",
-                headers: {
-                    "accept": "application/json",
-                    "authorization": `Bearer ${token}`
-                }
             });
 
-            if (response.status === 401) {
-                handleUnauthorized(401);
-                return;
-            }
+            if (!response) return;
             
-            if (response.status === 404) {
-                setSessions([]);
+            if (response.ok) {
+                const data = await response.json();
+                setSessions(data || []);
                 return;
-            }
-            
-            if (!response.ok) {
-                throw new Error("Failed to fetch sessions");
             }
             
             const data = await response.json();
             setSessions(data || []);
+
         } catch (error) {
             console.error("Error fetching sessions:", error);
+            alert("Network error, check your connection");
             setSessions([]);
         } finally {
             setLoading(false);
         }
-    },[token, type, page, limit]);
+    },[type, page, limit]);
 
     useEffect(() => {
         fetchSessions();
