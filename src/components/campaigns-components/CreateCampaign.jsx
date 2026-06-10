@@ -9,7 +9,7 @@ export default function CreateCampaign({ onClose, onCancel, setCampaigns }) {
         const fetchAgents = async () => {
             try {
 
-        const res = await apiFetch(`https://api.voixup.fr/me/agents`);
+        const res = await apiFetch(`https://api.mazia.ai/me/agents`);
 
         if (!res) return;
         
@@ -68,7 +68,7 @@ export default function CreateCampaign({ onClose, onCancel, setCampaigns }) {
         try {
             setLoading(true);
 
-            const res = await apiFetch(`https://api.voixup.fr/me/campaign`, {
+            const res = await apiFetch(`https://api.mazia.ai/me/campaign`, {
                 method: "POST",
                 body: JSON.stringify({
                     name: campaignData.name,
