@@ -36,9 +36,9 @@ export default function UserDashboard() {
     },[])
 
     return(
-        <div className="flex min-h-screen bg-white text-black">
+        <div className="flex min-h-screen bg-white text-black dark:bg-[#0d1117] dark:text-white">
             <Sidebar />
-            <main className="bg-[rgba(3,44,166,0.09)] flex-1">
+            <main className="bg-[rgba(3,44,166,0.09)] flex-1 ml-64 dark:bg-transparent">
                 <TopBar activeNav={{name: "Tableau de bord"}} isActive={isActive} />
                 <div className="py-6">
                     <div className="max-w-7xl mx-auto lg:px-6 px-4"></div>

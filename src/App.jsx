@@ -1,44 +1,23 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import UserDashboard from './components/UserDashboard';
 import Settings from "./components/settings";
 import CallsHistory from './components/callsHistory';
 import SessionExpired from "./SessionExpired";
 import Agents from "./components/Agents";
 import Campaigns from './components/Campaigns';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
-  const [sessionValid, setSessionValid] = useState(true);
-
-  useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            setSessionValid(false);
-            return;
-        }
-
-        try {
-            const payload = JSON.parse(atob(token.split(".")[1]));
-            if (payload.exp * 1000 < Date.now()) {
-                localStorage.removeItem("token");
-                setSessionValid(false);
-            }
-        } catch {
-            setSessionValid(false);
-        }
-    }, []);
-
-    if (!sessionValid) return <SessionExpired />;
 
   return (
     <div>
       <Router>
       <Routes>
-        <Route path="/" element={<UserDashboard />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/history" element={<CallsHistory />} />
-        <Route path="/bot" element={<Agents />} />
-        <Route path="/campaigns" element={<Campaigns />} />
+        <Route path="/" element={<ProtectedRoute><UserDashboard /></ProtectedRoute>} />
+        <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+        <Route path="/history" element={<ProtectedRoute><CallsHistory /></ProtectedRoute>} />
+        <Route path="/bot" element={<ProtectedRoute><Agents /></ProtectedRoute>} />
+        <Route path="/campaigns" element={<ProtectedRoute><Campaigns /></ProtectedRoute>} />
       </Routes>
     </Router>
     </div>

@@ -39,7 +39,7 @@ export default function CampaignOverview() {
             console.log("Campaigns:", data);
             setCampaigns(data);
         } catch (error) {
-            alert("Network error, check your connection");
+            alert("Erreur réseau, vérifiez votre connexion");
             console.error("Error fetching campaigns:", error);
             setCampaigns([]);
         } finally {

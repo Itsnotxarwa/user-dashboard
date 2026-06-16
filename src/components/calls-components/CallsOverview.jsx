@@ -18,7 +18,7 @@ export default function CallsOverview({ range }) {
                 const data = await res.json();
                 setCalls(data);
             } catch (err) {
-                alert("Network error, check your connection");
+                alert("Erreur réseau, vérifiez votre connexion");
                 console.error(err)
                 setCalls(null);
             }
@@ -52,16 +52,16 @@ export default function CallsOverview({ range }) {
                         <div>
                             <div className="text-lg font-bold text-slate-800"
                             style={{fontFamily: "'Cabinet Grotesk',sans-serif"}}>
-                                Daily Call Volume
+                                Volume des appels
                             </div>
                             <div className="text-xs text-slate-400 mt-0.5">
-                                Last {range} days
+                                Au cours des {range} derniers jours
                             </div>
                         </div>
                         {calls &&
                         <span className="text-xs px-2.5 py-1 rounded-full font-medium bg-[rgba(3,44,166,.07)]
                         text-[#032ca6] border border-[rgba(3,44,166,.14)]">
-                            {range === "30" ? calls?.volume.calls_last_30_days : calls?.volume.calls_last_7_days} calls
+                            {range === "30" ? calls?.volume.calls_last_30_days : calls?.volume.calls_last_7_days} appels
                         </span>
                         }  
                     </div>

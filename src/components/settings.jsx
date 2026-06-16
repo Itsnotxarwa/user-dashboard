@@ -4,6 +4,7 @@ import TopBar from "./dashboard-components/TopBar";
 import UserInfo from "./settings-components/UserInfo";
 import ChangePassword from "./settings-components/ChangePassword";
 import apiFetch from "./shared/apiFetch";
+import DarkMode from "./settings-components/DarkMode";
 
 
 export default function Settings() {
@@ -44,6 +45,7 @@ export default function Settings() {
                 <div className="py-6">
                     <div className="max-w-7xl mx-auto lg:px-6 px-4">
                         <UserInfo profile={profile} />
+                        <DarkMode />
                         <ChangePassword />
                     </div>
                 </div>

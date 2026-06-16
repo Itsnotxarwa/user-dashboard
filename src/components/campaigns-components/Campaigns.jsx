@@ -29,7 +29,7 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
             );
 
             if (!res) {
-                alert("Network error, check your connection");
+                alert("Erreur réseau, vérifiez votre connexion");
                 return;
             }
 
@@ -44,11 +44,11 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
                 )
             );
 
-            alert(`Uploaded successfully — ${data.valid_recipients} valid, ${data.invalid_recipients} invalid out of ${data.total_recipients} total`);
+            alert(`Importation réussie — ${data.valid_recipients} valides, ${data.invalid_recipients} invalides sur ${data.total_recipients} au total`);
             window.location.reload();
 
         } catch (err) {
-            alert(`Failed to upload recipients: ${err.message}`);
+            alert(`Échec de l'importation des destinataires : ${err.message}`);
         } finally {
             e.target.value = "";
             setUploadingCampaignId(null);
@@ -67,14 +67,14 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
             );
 
             if (!res) {
-                alert("Network error, check your connection");
+                alert("Erreur réseau, vérifiez votre connexion");
                 return;
             }
 
             const data = await res.json();
 
             if (!res.ok) {
-                alert(data.detail || "Failed to update status");
+                alert(data.detail || "Échec de la mise à jour du statut");
                 return;
             }
 
@@ -248,7 +248,7 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
                                                     <div className="text-sm font-semibold text-[#059669]">
                                                         {c.recipients.length}
                                                     </div>
-                                                    <div className="text-[10px] text-[#9aabca]">File Uploaded</div>
+                                                    <div className="text-[10px] text-[#9aabca]">Fichier importé</div>
                                                 </div>
                                             </div>
                                         )}
@@ -282,7 +282,7 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
                                                     className="cursor-pointer bg-[rgba(245,158,11,.06)] text-[#d97706] border rounded-[20px] gap-1
                                                     border-[rgba(245,158,11,.22)] flex items-center text-sm p-[3px_10px] font-medium">
                                                     <Trash size={12} />
-                                                    Destinataires
+                                                    Destinataires importés
                                                     <span className="text-[9px] p-[1px_5px] rounded-sm bg-[rgba(245,158,11,.12)]">
                                                         {c.recipients.length}
                                                     </span>
