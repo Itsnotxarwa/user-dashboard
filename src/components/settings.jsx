@@ -4,7 +4,6 @@ import TopBar from "./dashboard-components/TopBar";
 import UserInfo from "./settings-components/UserInfo";
 import ChangePassword from "./settings-components/ChangePassword";
 import apiFetch from "./shared/apiFetch";
-import DarkMode from "./settings-components/DarkMode";
 
 
 export default function Settings() {
