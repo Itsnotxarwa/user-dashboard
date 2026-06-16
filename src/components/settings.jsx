@@ -45,7 +45,6 @@ export default function Settings() {
                 <div className="py-6">
                     <div className="max-w-7xl mx-auto lg:px-6 px-4">
                         <UserInfo profile={profile} />
-                        <DarkMode />
                         <ChangePassword />
                     </div>
                 </div>

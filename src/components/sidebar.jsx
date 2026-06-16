@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { LayoutDashboard, ChartColumn, Bot, Settings, Target, LogOut } from "lucide-react";
 import Logo from "../assets/image.png";
-import apiFetch from "./shared/apiFetch";
 
 
 export default function Sidebar() {
@@ -17,10 +16,15 @@ export default function Sidebar() {
     const handleLogout = async () => {
     try {
 
-        const res = await apiFetch(
+        const res = await fetch(
             "https://api.mazia.ai/me/logout",
             {
                 method: "POST",
+                credentials: "include",
+                headers: {
+                    "accept": "application/json",
+                    "Content-Type": "application/json",
+                },
             }
         );
 
@@ -31,7 +35,7 @@ export default function Sidebar() {
     } catch (err) {
         console.error(err);
     } finally {
-        window.location.href = "https://auth.mazia.ai/";
+        window.location.replace = "https://auth.mazia.ai/";
     }
 };
 
