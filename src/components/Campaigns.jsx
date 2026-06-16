@@ -8,9 +8,9 @@ export default function Campaigns() {
     const [showCreateCampaign, setShowCreateCampaign] = useState(false);
 
     return(
-        <div className="flex min-h-screen bg-white text-black">
+        <div className="flex min-h-screen bg-white text-black dark:bg-[#0d1117] dark:text-white">
             <Sidebar />
-            <main className="bg-[rgba(3,44,166,0.09)] flex-1">
+            <main className="bg-[rgba(3,44,166,0.09)] flex-1 ml-64">
                 <TopBar activeNav={{name: "Campagnes"}} setShowCreateCampaign={setShowCreateCampaign}  />
                 <CampaignOverview />
             </main>
