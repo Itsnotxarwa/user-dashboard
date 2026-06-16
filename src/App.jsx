@@ -18,6 +18,7 @@ function App() {
         <Route path="/history" element={<ProtectedRoute><CallsHistory /></ProtectedRoute>} />
         <Route path="/bot" element={<ProtectedRoute><Agents /></ProtectedRoute>} />
         <Route path="/campaigns" element={<ProtectedRoute><Campaigns /></ProtectedRoute>} />
+        <Route path="session-expired" element={<SessionExpired />} />
       </Routes>
     </Router>
     </div>
