@@ -7,6 +7,7 @@ import apiFetch from "./shared/apiFetch";
 
 export default function Agents() {
     const [agents, setAgents] = useState([]);
+    const [total, setTotal] = useState(0)
     const [selectedAgent, setSelectedAgent] = useState(null);
     const [openAgentDetails, setOpenAgentsDetails] = useState(false);
 
@@ -21,7 +22,8 @@ export default function Agents() {
                 if (!res) return;
                 
                 const data = await res.json();
-                setAgents([data]);
+                setAgents(data.agents || []);
+                setTotal(data.total || 0);
                 console.log(data);
                 
             } catch (err) {
@@ -42,7 +44,8 @@ export default function Agents() {
                 agents={agents} 
                 setSelectedAgent={setSelectedAgent}
                 selectedAgent={selectedAgent}
-                setOpenAgentsDetails={setOpenAgentsDetails} />
+                setOpenAgentsDetails={setOpenAgentsDetails}
+                total={total} />
             </main>
             {openAgentDetails && (
                 <AgentDetails
