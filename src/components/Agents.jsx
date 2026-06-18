@@ -22,6 +22,7 @@ export default function Agents() {
                 
                 const data = await res.json();
                 setAgents([data]);
+                console.log(data);
                 
             } catch (err) {
                 console.error(err);

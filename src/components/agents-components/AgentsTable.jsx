@@ -65,10 +65,10 @@ export default function AgentsTable({agents, setSelectedAgent, setOpenAgentsDeta
                                         </div>
                                     <div className="text-[13px] font-bold text-[#0a1628]"
                                     style={{fontFamily: "'Cabinet Grotesk',sans-serif"}}>
-                                        {a.name}
+                                        {a?.name || ""}
                                     </div>
                                     <div className="text-[11px] text-[#9aabca] mt-0.5">
-                                        {a.id.slice(0,20)}
+                                        {a?.id?.slice(0,20)}
                                     </div>
                                 </div>
                             </td>
