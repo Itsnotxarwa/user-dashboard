@@ -21,7 +21,7 @@ export default function Agents() {
                 if (!res) return;
                 
                 const data = await res.json();
-                setAgents(data);
+                setAgents([data]);
                 
             } catch (err) {
                 console.error(err);

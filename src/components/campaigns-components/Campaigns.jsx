@@ -21,7 +21,7 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
             formData.append("file", selectedFile);
 
             const res = await apiFetch(
-                `https://api.voixup.fr/me/campaigns/${uploadingCampaignId}/recipients`,
+                `https://api.mazia.ai/me/campaigns/${uploadingCampaignId}/recipients`,
                 {
                     method: "POST",
                     body: formData,
@@ -59,7 +59,7 @@ export default function Campaigns({campaigns, setCampaigns, loading }) {
         try {
 
             const res = await apiFetch(
-                `https://api.voixup.fr/me/campaigns/${campaignId}/status`,
+                `https://api.mazia.ai/me/campaigns/${campaignId}/status`,
                 {
                     method: "PATCH",
                     body: JSON.stringify({ status }),

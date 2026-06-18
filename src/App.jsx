@@ -5,6 +5,7 @@ import CallsHistory from './components/callsHistory';
 import SessionExpired from "./SessionExpired";
 import Agents from "./components/Agents";
 import Campaigns from './components/Campaigns';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
 
@@ -12,11 +13,11 @@ function App() {
     <div>
       <Router>
       <Routes>
-        <Route path="/" element={<UserDashboard />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/history" element={<CallsHistory />} />
-        <Route path="/bot" element={<Agents />} />
-        <Route path="/campaigns" element={<Campaigns />} />
+        <Route path="/" element={<ProtectedRoute><UserDashboard /></ProtectedRoute>} />
+        <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+        <Route path="/history" element={<ProtectedRoute><CallsHistory /></ProtectedRoute>} />
+        <Route path="/bot" element={<ProtectedRoute><Agents /></ProtectedRoute>} />
+        <Route path="/campaigns" element={<ProtectedRoute><Campaigns /></ProtectedRoute>} />
         <Route path="session-expired" element={<SessionExpired />} />
       </Routes>
     </Router>
