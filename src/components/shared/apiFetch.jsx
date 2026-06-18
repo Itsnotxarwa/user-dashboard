@@ -32,10 +32,10 @@ const apiFetch = async (url, options = {}) => {
 
         const retryResponse = await fetch(url, buildOptions(options));
 
-    //    if (retryResponse.status === 401) {
-      //      window.location.href = "/session-expired";
-        //    return;
-        //}
+        if (retryResponse.status === 401) {
+            window.location.href = "/session-expired";
+            return;
+        }
 
         return retryResponse;
     } finally {

@@ -35,21 +35,21 @@ export default function Sidebar() {
     } catch (err) {
         console.error(err);
     } finally {
-        window.location.replace = "https://auth.mazia.ai/";
+        window.location.replace = ("https://auth.mazia.ai/");
     }
 };
 
 
     return(
-            <aside className="flex flex-col w-64 px-4 md:px-6 h-screen
+            <aside className="flex flex-col w-64 px-4 md:px-6 h-screen overflow-y-auto
             py-8 transition-all duration-300 ease-in-out justify-between dark:bg-[#161b22] 
-            shrink-0 border-r dark:border-[#21262d] fixed top-0 left-0 bottom-0 z-50 ">
+            shrink-0 border-r border-[#032ca6]80 dark:border-[#21262d] fixed top-0 left-0 bottom-0 z-50 ">
                 <div>
                 <div className="flex items-center justify-center">
                     <img src={Logo} alt="Mazia" className="w-30" />
                 </div>
                 
-                <nav className="space-y-2 mt-18">
+                <nav className="space-y-2 mt-16">
                     {links.map((link) => (
                         <NavLink
                         to={link.href}
