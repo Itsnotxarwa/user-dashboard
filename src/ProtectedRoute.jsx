@@ -8,7 +8,7 @@ export default function ProtectedRoute({ children }) {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const res = await apiFetch("https://api.mazia.ai/auth/me", {
+                const res = await apiFetch("https://api.mazia.ai/me/profile", {
                     method: "GET",
                 });
 
