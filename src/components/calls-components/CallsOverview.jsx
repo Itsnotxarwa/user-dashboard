@@ -11,7 +11,7 @@ export default function CallsOverview({ range }) {
             const fetchCalls = async () => {
                 try {
         
-                const res = await apiFetch(`https://api.voixup.fr/me/calls/overview`);
+                const res = await apiFetch(`https://api.mazia.ai/me/calls/overview`);
     
                 if (!res) return;
     
