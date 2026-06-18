@@ -25,7 +25,7 @@ export default function CampaignOverview() {
             if (startDate) params.append("start_date", startDate);
             if (status) params.append("status", status);
 
-            const url = `https://api.voixup.fr/me/campaigns?${params.toString()}`;
+            const url = `https://api.mazia.ai/me/campaigns?${params.toString()}`;
     
             const res = await apiFetch(url, {
                 headers: {
